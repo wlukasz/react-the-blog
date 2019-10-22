@@ -5,13 +5,7 @@
 }
 
 .page-header__actions {
+  display: flex;
+  justify-content: space-between;
   margin-top: $m-size;
-}
-
-.page-header__title {
-  margin: 0;
-  font-weight: 300;
-  span {
-    font-weight: 700; // or bold
-  }
 }

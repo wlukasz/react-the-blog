@@ -1,8 +1,11 @@
 import React from 'react'
+import DashboardPageHeader from './DashboardPageHeader'
+import PostList from './PostList'
 
 const DashboardPage = () => (
   <div>
-    Dashboard page content
+    <DashboardPageHeader />
+    <PostList />
   </div>
 )
 
