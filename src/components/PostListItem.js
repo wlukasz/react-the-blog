@@ -1,9 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-const PostListItem = ({ id, title, text, createdAt, editedAt }) => (
-  <Link className="list-item" to={`/edit/${id}`} >
+const PostListItem = ({ isAuthenticated, id, title, text, createdAt, editedAt }) => (
+  <Link 
+    className="list-item" 
+    to={isAuthenticated ? `/edit/${id}` : `/readonly/${id}` } 
+  >
     <h3 className="list-item__title">{title}</h3> 
     <div className="list-item__sub-title">
       <div>Posted {moment(createdAt).fromNow()}</div>
@@ -11,5 +15,9 @@ const PostListItem = ({ id, title, text, createdAt, editedAt }) => (
     </div>
   </Link>
 )
-      
-export default PostListItem
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: !!state.auth.uid
+})
+
+export default connect(mapStateToProps)(PostListItem)      

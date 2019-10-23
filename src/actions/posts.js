@@ -59,6 +59,48 @@ export const startEditPost = (id, updates) => {
   }
 }
 
+// SET_POSTS_NO_AUTH
+export const setPostsNoAuth = (posts) => ({
+  type: 'SET_POSTS_NO_AUTH',
+  posts
+})
+
+export const startSetPostsNoAuth = () => {
+  return (dispatch) => {
+    return database.ref(`users/`)
+    .once('value')
+    .then((snapshot) => {
+      const posts = []
+      snapshot.forEach((childSnapshot) => {
+        // console.log(childSnapshot.key) // this is uid
+        // console.log(childSnapshot.val().posts)
+
+        let postsObject = childSnapshot.val().posts
+        let i = 0
+
+        // console.log(Object.keys(postsObject)[0])
+        // console.log(Object.values(postsObject)[0])
+
+        Object.values(postsObject).map(post => {
+          // console.log(Object.keys(postsObject)[i])
+          // console.log(post)
+
+          posts.push({
+            id: Object.keys(postsObject)[i], // post id
+            ...post
+          })
+          
+          i++
+        })
+        
+      })
+// console.log('FINAL')
+// console.log(posts)
+      dispatch(setPostsNoAuth(posts))
+    })
+  }
+}
+
 // SET_POSTS
 export const setPosts = (posts) => ({
   type: 'SET_POSTS',

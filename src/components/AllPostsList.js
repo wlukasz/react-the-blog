@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import PostListItem from './PostListItem'
 import selectPosts from '../selectors/posts'
 
-export const PostList = (props) => (
+export const AllPostsList = (props) => (
   <div className="content-container">
     <div className="list-body">
       {
         props.posts.length === 0 ? (
           <div className="list-item list-item--message">
-            <span>Write your first post.</span>
+            <span>No posts.</span>
           </div>
         ) : (
           props.posts.map((post) => {
@@ -23,9 +23,9 @@ export const PostList = (props) => (
 
 const mapStateToProps = (state) => {
   return {
-    // posts: state.post  
+    // posts: state.post
     posts: selectPosts(state.posts, state.filters)
   }
 }
 
-export default connect(mapStateToProps)(PostList)
+export default connect(mapStateToProps)(AllPostsList)

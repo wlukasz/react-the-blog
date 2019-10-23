@@ -1,12 +1,17 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import DashboardPageHeader from './DashboardPageHeader'
 import PostList from './PostList'
 
-const DashboardPage = () => (
+const DashboardPage = ({ isAuthenticated }) => (
   <div>
-    <DashboardPageHeader />
-    <PostList />
+    <DashboardPageHeader isAuthenticated={isAuthenticated} />
+    <PostList isAuthenticated={isAuthenticated} />
   </div>
 )
 
-export default DashboardPage
+const mapStateToProps = (state) => ({
+  isAuthenticated: !!state.auth.uid
+})
+
+export default connect(mapStateToProps)(DashboardPage)
