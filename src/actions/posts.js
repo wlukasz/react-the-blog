@@ -1,4 +1,4 @@
-import database from '../firebase/firebase'
+import database,  { firebase } from '../firebase/firebase'
 
 // ADD_POST
 export const addPost = (post) => ({
@@ -12,9 +12,16 @@ export const startAddPost = (postData = {}) => {
       title = '', 
       text = '',
       createdAt = 0,
-      editedAt = 0 
+      editedAt = 0
     } = postData
-    const post = { title, text, createdAt, editedAt }
+
+    const post = { 
+      title, 
+      text, 
+      createdAt, 
+      editedAt, 
+      author: firebase.auth().currentUser.displayName 
+    }
 
     database.ref(`users/${uid}/posts`).push(post).then((ref) => {
       dispatch(addPost({
@@ -53,6 +60,7 @@ export const editPost = (id, updates) => ({
 export const startEditPost = (id, updates) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid
+
     return database.ref(`users/${uid}/posts/${id}`).update(updates).then(() => {
       dispatch(editPost(id, updates))
     })

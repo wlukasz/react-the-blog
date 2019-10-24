@@ -8,8 +8,16 @@ export default (posts, { text, sortBy }) => {
   }).sort((a,b) => {
     if (sortBy === 'date-desc') {
       return b.createdAt - a.createdAt
+
     } else if ( sortBy === 'date-asc') {
       return a.createdAt - b.createdAt
+
+    } else if ( sortBy === 'author') {
+      if (a.author < b.author) return -1
+
+      else if(a.author > b.author) return 1
+      
+      else return 0
     } else {
       return 0
     }

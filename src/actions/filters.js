@@ -13,3 +13,8 @@ export const sortByDateDesc = () => ({
 export const sortByDateAsc = () => ({
   type: 'SORT_BY_DATE_ASC'
 })
+
+// SORT_BY_AUTHOR
+export const sortByAuthor = () => ({
+  type: 'SORT_BY_AUTHOR'
+})

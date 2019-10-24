@@ -39,6 +39,10 @@
   word-break: break-all;
 }
 
+.list-item__author {
+  font-size: $font-size-small;
+}
+
 .list-item__sub-title {
   color: $grey;
   font-size: $font-size-small;

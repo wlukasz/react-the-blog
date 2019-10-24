@@ -22,8 +22,8 @@ const AppRouter = () => (
         <PrivateRoute path="/dashboard" component={DashboardPage} />
         <PrivateRoute path="/create" component={AddPostPage} />
         <PrivateRoute path="/edit/:id" component={EditPostPage} />
-        <PublicRoute path="/read" component={AllPostsListPage} />
-        <PublicRoute path="/readonly/:id" component={ReadPostPage} />
+        <PublicRoute path="/read" component={AllPostsListPage} exact={true} />
+        <PublicRoute path="/read/:id" component={ReadPostPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

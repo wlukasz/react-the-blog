@@ -24,6 +24,11 @@ export default (state = filtersReducerDefaultState, action) => {
         ...state,
         sortBy: 'date-asc'
       }
+    case 'SORT_BY_AUTHOR':
+      return {
+        ...state,
+        sortBy: 'author'
+      }
     default:
       return state
   }
